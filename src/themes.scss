@@ -5,14 +5,23 @@ $nb-themes: nb-register-theme((
 
   // add your variables here like:
 
-  // color-primary-100: #f2f6ff,
-  // color-primary-200: #d9e4ff,
-  // color-primary-300: #a6c1ff,
-  // color-primary-400: #598bff,
-  // color-primary-500: #3366ff,
-  // color-primary-600: #274bdb,
-  // color-primary-700: #1a34b8,
-  // color-primary-800: #102694,
-  // color-primary-900: #091c7a,
+  color-danger-100: #f1bfca,
+  color-danger-200: #e898ab,
+  color-danger-300: #df7388,
+  color-danger-400: #d65d71,
+  color-danger-500: #cf4f5d,
+  color-danger-600: #bf4a5a,
+  color-danger-700: #a94455,
+  color-danger-800: #943e50,
+  color-danger-900: #713346,
 
+  color-success-100: #a3e6d9,
+  color-success-200: #5dd6c0,
+  color-success-300: #00c3a6,
+  color-success-400: #00b393,
+  color-success-500: #00a481,
+  color-success-600: #009674,
+  color-success-700: #008664,
+  color-success-800: #007665,
+  color-success-900: #005939,
 ), corporate, corporate);
