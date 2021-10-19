@@ -1,4 +1,7 @@
+import { Product } from './../../Models/product';
+import { ApiService } from './../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsListComponent implements OnInit {
 
-  constructor() { }
+  public productsList: Product[] = [];
+
+
+  constructor( private _api: ApiService, private _route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    this._api.getAllProducts().subscribe(res => this.productsList = res)
   }
 
 }

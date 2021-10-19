@@ -1,1 +1,4 @@
-<p>products-details works!</p>
+<ng-container *ngIf="selectedProduct">
+    <h2>{{ selectedProduct.NameProduct}}</h2>
+    <p>Category: {{selectedProduct.NameCategory }}</p>
+</ng-container>

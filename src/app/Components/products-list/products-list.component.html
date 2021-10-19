@@ -1,1 +1,19 @@
-<p>products-list works!</p>
+<ng-container *ngFor="let product of productsList">
+    <nb-card  status="success">
+        <nb-card-header><a [routerLink]="'/product/'+ product.ProductId">{{ product.NameProduct }}</a></nb-card-header>
+        <nb-card-body>
+            <img src="https://picsum.photos/id/102/150/100" alt="">
+            <!-- <p>Reference: {{ product.ProductRef }}</p> -->
+            <p>
+                <span [ngStyle]="{'text-decoration':product.Discount ? 'line-through': 'none'}">{{ product.UnitSalePrice }}€</span> 
+                <ng-container *ngIf="product.Discount">
+                    <span style="color:#009674"> -{{ product.Discount }}€</span> 
+                    <span> -> New Price: {{ product.UnitSalePrice - product.Discount}}€!</span> 
+                </ng-container>
+            </p>
+            <button nbButton status="basic" size="small">Add to Card <nb-icon icon="plus-outline"></nb-icon></button>
+        </nb-card-body>
+    </nb-card>
+</ng-container>
+
+

@@ -11,6 +11,6 @@ export class AppComponent {
   constructor(private sidebarService: NbSidebarService) {
   }
   toggle() {
-    this.sidebarService.toggle(false, 'left');
+    this.sidebarService.toggle(true, 'left');
   }
 }

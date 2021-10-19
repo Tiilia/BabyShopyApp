@@ -5,6 +5,16 @@ $nb-themes: nb-register-theme((
 
   // add your variables here like:
 
+  color-primary-100: #f1bfca,
+  color-primary-200: #e898ab,
+  color-primary-300: #df7388,
+  color-primary-400: #d65d71,
+  color-primary-500: #cf4f5d,
+  color-primary-600: #bf4a5a,
+  color-primary-700: #a94455,
+  color-primary-800: #943e50,
+  color-primary-900: #713346,
+  
   color-danger-100: #f1bfca,
   color-danger-200: #e898ab,
   color-danger-300: #df7388,
@@ -14,7 +24,7 @@ $nb-themes: nb-register-theme((
   color-danger-700: #a94455,
   color-danger-800: #943e50,
   color-danger-900: #713346,
-
+  
   color-success-100: #a3e6d9,
   color-success-200: #5dd6c0,
   color-success-300: #00c3a6,
@@ -24,4 +34,7 @@ $nb-themes: nb-register-theme((
   color-success-700: #008664,
   color-success-800: #007665,
   color-success-900: #005939,
+
+  color-primary-default: color-primary-400,
+  color-success-default: color-success-200
 ), corporate, corporate);
