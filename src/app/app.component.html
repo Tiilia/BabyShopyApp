@@ -1,13 +1,17 @@
 <nb-layout>
-
   <nb-layout-header fixed>
+    <button nbButton status="basic" ghost size="large" (click)="toggle()">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </button>
     <app-header></app-header>
   </nb-layout-header>
 
+<nb-sidebar>
+  <app-side-bar></app-side-bar>
+</nb-sidebar>
+
   <nb-layout-column>
-    
     <router-outlet></router-outlet>
-    
   </nb-layout-column>
 
   <nb-layout-footer fixed>

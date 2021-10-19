@@ -1,3 +1,5 @@
+import { ApiService } from './../../Services/api.service';
+import { Category } from './../../Models/category';
 import { Link } from './../../Models/link';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  public links: Link[];
-
-  constructor() {
-    this.links = [];
-   }
+  constructor() { }
 
   ngOnInit(): void {
-    this.links.push(new Link("Home", "/"))
+
   }
 
 }
