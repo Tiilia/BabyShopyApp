@@ -1,3 +1,17 @@
 a {
     text-decoration: none;
   }
+
+  
+  .card-row {
+    width: 35%;
+    display: flex;    
+    flex-wrap: wrap;
+    // justify-content: space-around;
+    margin: 0 -0.5rem;
+  }
+  
+  .card-col {
+    flex: 1 ;
+    margin: 0 0.5rem;
+  }

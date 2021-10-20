@@ -42,11 +42,10 @@ export class SideBarComponent implements OnInit {
     let list;
     if (this.categoriesList){
       for (let i = 0; i < this.categoriesList.length; i++){      
-        console.log("ok");
         list = { 
           title: this.categoriesList[i].NameCategory, 
           link: "/shop/" ,
-          queryParams: { category: this.categoriesList[i].NameCategory.toLowerCase()}
+          queryParams: { category: this.categoriesList[i].NameCategory}
         }
         this.menuNav[1].children?.push(list)
       }
@@ -67,7 +66,7 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
         this._api.getAllCategories().subscribe(res => { this.categoriesList = res;
-        if (this.categoriesList) console.log("go");
+        // if (this.categoriesList) console.log("go");
         this.catMenu();
         //this.addMenuCat()
         });

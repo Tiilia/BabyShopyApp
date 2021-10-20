@@ -1,7 +1,10 @@
+import { Category } from './../../Models/category';
 import { Product } from './../../Models/product';
 import { ApiService } from './../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-products-list',
@@ -11,12 +14,33 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsListComponent implements OnInit {
 
   public productsList: Product[] = [];
+  public categoryParams?: string;
+  public categoryObj?: any;
+
+
 
 
   constructor( private _api: ApiService, private _route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this._api.getAllProducts().subscribe(res => this.productsList = res)
+    // this._route.queryParams.filter(params => params.category).subscribe(params =>  {
+    //   this.categoryParams = params;
+    //   console.log(this.categoryParams);
+    // })
+    this._route.queryParamMap.subscribe((params) => {
+      this.categoryObj = { ...params};
+      // console.log(this.categoryObj);
+      this.categoryParams = this.categoryObj.params.category;
+
+       
+      this._api.getAllProducts().subscribe(res =>{
+        this.productsList = res;
+        console.log(this.categoryParams);
+        if (this.categoryParams){
+          this.productsList = this.productsList.filter(product => product.NameCategory == this.categoryParams)
+        }
+      })
+    })
   }
 
 }
