@@ -16,6 +16,7 @@ export class ProductsListComponent implements OnInit {
   public productsList: Product[] = [];
   public categoryParams?: string;
   public categoryObj?: any;
+  public category?: Category;
 
 
 
@@ -37,7 +38,8 @@ export class ProductsListComponent implements OnInit {
         this.productsList = res;
         console.log(this.categoryParams);
         if (this.categoryParams){
-          this.productsList = this.productsList.filter(product => product.NameCategory == this.categoryParams)
+          this.productsList = this.productsList.filter(product => product.NameCategory == this.categoryParams);
+          this._api.getCategoryByName(this.categoryParams).subscribe(res => this.category = res);
         }
       })
     })

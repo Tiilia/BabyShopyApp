@@ -1,5 +1,13 @@
 <!-- catégory name -->
 <!-- catégory description -->
+<ng-container *ngIf="categoryParams">
+    <h2>{{ categoryParams }}</h2>
+    <p *ngIf="category">{{category.Description}}</p>
+</ng-container>
+<ng-container *ngIf="!categoryParams">
+    <h2>Shop</h2>
+</ng-container>
+
 
 <div class="card-row">
     <div class="card-col">

@@ -18,6 +18,10 @@ export class ApiService {
   public getAllCategories(): Observable<Category[]> {
     return this._http.get<Category[]>(this._url + "/categories");
   }
+  //category by name
+  public getCategoryByName(name: string): Observable<Category> {
+    return this._http.get<Category>(this._url + `/categories/byName/${name}`)
+  }
 
   // * get products
   // all products
@@ -32,4 +36,8 @@ export class ApiService {
   public getProductByCategoryId(id: number): Observable<Product[]> {
     return this._http.get<Product[]>(this._url + `/products/byCategory/${id}`)
   }
+
+  // public auth(){
+  //   return this._http.post<any>(this._url + "/auth/login", {"email": "mail@mail.com", "password":"toto"}).subscribe((data)=> console.log(data));
+  // }
 }

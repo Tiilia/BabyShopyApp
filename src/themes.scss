@@ -1,6 +1,6 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/corporate';
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 $nb-themes: nb-register-theme((
 
   // add your variables here like:
@@ -36,5 +36,8 @@ $nb-themes: nb-register-theme((
   color-success-900: #005939,
 
   color-primary-default: color-primary-400,
-  color-success-default: color-success-200
+  color-success-default: color-success-200,
+
+  header-shadow: 0 0.5rem 1rem 0 rgba(25, 30, 51, 0.14),
+  font-family-primary: 'Rubik',
 ), corporate, corporate);
