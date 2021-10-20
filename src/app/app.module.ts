@@ -15,6 +15,7 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { SideBarComponent } from './Components/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     NbMenuModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
-    NbCardModule
+    NbCardModule,
+
+    NbAuthModule.forRoot({
+      strategies:[
+        NbPasswordAuthStrategy.setup({
+          name:'email',
+        }),
+      ],
+      forms: {},
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

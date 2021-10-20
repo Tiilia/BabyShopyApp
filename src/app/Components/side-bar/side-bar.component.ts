@@ -34,7 +34,8 @@ export class SideBarComponent implements OnInit {
     },
     {
       title: "Auth",
-      icon: "person-outline"
+      link: '/auth',
+      icon: "person-outline",
     }
 
   ]
