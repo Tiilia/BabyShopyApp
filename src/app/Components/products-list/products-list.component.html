@@ -15,7 +15,7 @@
             <nb-card  status="success">
                 <nb-card-header><a [routerLink]="'/product/'+ product.ProductId">{{ product.NameProduct }}</a></nb-card-header>
                 <nb-card-body>
-                    <img src="https://picsum.photos/id/102/150/100" alt="">
+                    <img src="../../../assets/pexels-rene-asmussen-325690.jpg" style="width:200px;" alt="">
                     <!-- <p>Reference: {{ product.ProductRef }}</p> -->
                     <p>
                         <span [ngStyle]="{'text-decoration':product.Discount ? 'line-through': 'none'}">{{ product.UnitSalePrice }}€</span> 

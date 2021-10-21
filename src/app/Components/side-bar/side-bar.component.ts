@@ -1,8 +1,8 @@
 import { ApiService } from './../../Services/api.service';
 import { Category } from './../../Models/category';
-import { Link } from './../../Models/link';
 import { Component, OnInit } from '@angular/core';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { NbAuthService } from '@nebular/auth';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,6 +14,7 @@ export class SideBarComponent implements OnInit {
   //public links: Link[] = [];
   public categoriesList?: Category[]
   public categoryMenuItem: NbMenuItem[] = []
+  public isAuth: boolean = false;
 
   public menuNav: NbMenuItem[] = [
     {
@@ -34,9 +35,30 @@ export class SideBarComponent implements OnInit {
     },
     {
       title: "Auth",
-      link: '/auth/login',
+      icon: "unlock-outline",
+      hidden: this.isAuth,
+      children: [
+        {
+          title: "Login",
+          link: "/auth/login",
+        },
+        {
+          title: "Register",
+          link: "/auth/register"
+        },
+      ]
+    },
+    {
+      title: "Account",
       icon: "person-outline",
+      hidden: !this.isAuth,
+      children: [
+        {
+          title: "Card"
+        }
+      ]
     }
+
 
   ]
   public catMenu(){  
@@ -63,13 +85,16 @@ export class SideBarComponent implements OnInit {
   // }
    
 
-  constructor( private _api: ApiService, private menuService: NbMenuService) { }
+  constructor( private _api: ApiService, private menuService: NbMenuService, private _autService: NbAuthService) { }
 
   ngOnInit(): void {
         this._api.getAllCategories().subscribe(res => { this.categoriesList = res;
         // if (this.categoriesList) console.log("go");
         this.catMenu();
         //this.addMenuCat()
+        console.log(`token: ${this._autService.getToken()}
+        auth? ${this._autService.isAuthenticated()}`);
+        
         });
   }
 

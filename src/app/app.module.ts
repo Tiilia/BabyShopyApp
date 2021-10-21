@@ -15,7 +15,16 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { SideBarComponent } from './Components/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
+import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
+
+
+const formSetting: any = {
+  redirectDelay: 0,
+  showMessages: {
+    success: true,
+  },
+};
+
 
 @NgModule({
   declarations: [
@@ -48,10 +57,18 @@ import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
       strategies:[
         NbPasswordAuthStrategy.setup({
           name:'email',
+          token: {
+              class: NbAuthJWTToken,
+            },
 
           baseEndpoint: 'http://localhost:3000',
           login: {
             endpoint: '/auth/sign-in',
+            redirect: {
+              success: '/', // home page path
+              failure: "/not-found", 
+            },
+            
           },
           register: {
             endpoint: '/auth/sign-up',
@@ -68,7 +85,17 @@ import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 
         }),
       ],
-      forms: {},
+
+      
+      forms: {
+        login: formSetting,
+        register: formSetting,
+        requestPassword: formSetting,
+        resetPassword: formSetting,
+        logout: {
+          redirectDelay: 0,
+        }
+      },
     }),
   ],
   providers: [],
