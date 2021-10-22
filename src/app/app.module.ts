@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule } from '@nebular/theme';
+import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -52,6 +52,7 @@ const formSetting: any = {
     ReactiveFormsModule,
     HttpClientModule,
     NbCardModule,
+    NbUserModule,
 
     NbAuthModule.forRoot({
       strategies:[
@@ -59,6 +60,7 @@ const formSetting: any = {
           name:'email',
           token: {
               class: NbAuthJWTToken,
+              key: 'token',
             },
 
           baseEndpoint: 'http://localhost:3000',

@@ -11,3 +11,16 @@ a {
   font-size: 120%;
   font-style: oblique;
 }
+.flex-container{
+  display: flex;
+  // flex-wrap: wrap;
+  justify-content: space-around;
+}
+.flex-item{
+  margin: 20px;
+}
+.right{
+  position: absolute;
+  right: 50px;
+  top: 20px
+}

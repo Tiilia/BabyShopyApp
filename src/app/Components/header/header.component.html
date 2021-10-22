@@ -1,4 +1,21 @@
-<h2 class="title">
-    <a routerLink=""><span class="title-letter text-success">B</span>aby<span class="title-letter text-danger">S</span>hopy</a>
-</h2>
+<div class="flex-container">
+    <div class="flex-item">
+        <h2 class="title">
+            <a routerLink=""><span class="title-letter text-success">B</span>aby<span class="title-letter text-danger">S</span>hopy</a>
+        </h2>
+    </div>
 
+   
+
+    <!-- {{user?.fullName}} -->
+
+    <!-- <nb-user [name]="user?.name"></nb-user> -->
+<!--     
+    <nb-user name="John Doe"></nb-user> -->
+
+</div> 
+<div class="right" *ngIf="user">
+        <nb-user [name]="user.fullName"
+                    size="large"
+        ></nb-user>
+</div>
