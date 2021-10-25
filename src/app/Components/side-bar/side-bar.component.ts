@@ -2,7 +2,8 @@ import { ApiService } from './../../Services/api.service';
 import { Category } from './../../Models/category';
 import { Component, OnInit } from '@angular/core';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
-import { NbAuthService } from '@nebular/auth';
+import { NbAuthService, NbTokenService } from '@nebular/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,9 +15,12 @@ export class SideBarComponent implements OnInit {
   //public links: Link[] = [];
   public categoriesList?: Category[]
   public categoryMenuItem: NbMenuItem[] = []
-  public isAuth: boolean = false;
+  public isAuth?: boolean; 
+  public menuNav: NbMenuItem[] = []
 
-  public menuNav: NbMenuItem[] = [
+
+  public getMenuNav(){
+  this.menuNav = [
     {
       title: "Home",
       link: '/',
@@ -36,6 +40,7 @@ export class SideBarComponent implements OnInit {
     {
       title: "Auth",
       icon: "unlock-outline",
+      expanded: true,
       hidden: this.isAuth,
       children: [
         {
@@ -49,18 +54,23 @@ export class SideBarComponent implements OnInit {
       ]
     },
     {
-      title: "Account",
-      icon: "person-outline",
+      title: "Card",
+      link: "/basket",
+      icon: "shopping-cart-outline",
       hidden: !this.isAuth,
-      children: [
-        {
-          title: "Card"
-        }
-      ]
+      badge: {
+        text: '0',
+        status:'success',
+      }
+        // {
+        //   title: "Logout",
+        //   link: this.logout()
+        // }
+     
     }
 
 
-  ]
+  ]}
   public catMenu(){  
     let list;
     if (this.categoriesList){
@@ -74,6 +84,12 @@ export class SideBarComponent implements OnInit {
       }
     }
   }
+
+  public logout(){
+    this._tokenService.clear()
+    window.location.reload()
+    this._router.navigate([''])
+  }
   // addMenuCat(){
   //   if (this.categoriesList){
   //     for (let i = 0; i < this.categoriesList.length; i++){
@@ -85,17 +101,20 @@ export class SideBarComponent implements OnInit {
   // }
    
 
-  constructor( private _api: ApiService, private menuService: NbMenuService, private _autService: NbAuthService) { }
+  constructor( private _api: ApiService, private menuService: NbMenuService, private _autService: NbAuthService, private _tokenService: NbTokenService,  private _router: Router) {
+   }
 
   ngOnInit(): void {
         this._api.getAllCategories().subscribe(res => { this.categoriesList = res;
         // if (this.categoriesList) console.log("go");
         this.catMenu();
         //this.addMenuCat()
-        console.log(`token: ${this._autService.getToken()}
-        auth? ${this._autService.isAuthenticated()}`);
-        
-        });
+      });
+      this._autService.isAuthenticatedOrRefresh().subscribe(auth => {
+        this.isAuth = auth;
+        console.log(this.isAuth);
+        this.getMenuNav()
+      })
   }
 
 }

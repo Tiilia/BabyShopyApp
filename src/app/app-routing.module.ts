@@ -1,3 +1,5 @@
+import { BasketComponent } from './Components/basket/basket.component';
+import { AuthGuardService } from './Services/auth-guard.service';
 import { ProductsListComponent } from './Components/products-list/products-list.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: "shop", component: ProductsListComponent},
   //{ path: "shop/:category", component: ProductsListComponent},
   { path: "product/:id", component: ProductsDetailsComponent},
+
+  { path: "basket", canActivate: [AuthGuardService], component: BasketComponent},
   
   { 
     path: 'auth', component: NbAuthComponent,

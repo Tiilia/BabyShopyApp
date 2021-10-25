@@ -1,3 +1,13 @@
 
 <nb-menu tag="menu" [items]="menuNav">
 </nb-menu>
+
+<ng-container *ngIf="isAuth">
+    <button nbButton
+            outline
+            [hidden]="isAuth" 
+            (click)="logout()" 
+            size="tiny"
+            class="margin-top"
+    ><nb-icon icon="close-circle-outline"></nb-icon> Logout</button>
+</ng-container>

@@ -15,7 +15,15 @@
 
 </div> 
 <div class="right" *ngIf="user">
-        <nb-user [name]="user.fullName"
-                    size="large"
-        ></nb-user>
+    <nb-actions size="medium">
+        <nb-action>
+            <nb-search type="column-curtain"></nb-search>
+        </nb-action>
+        <nb-action>
+            <nb-user [name]="user.fullName"
+                        size="large"
+            ></nb-user>
+        </nb-action>
+        <nb-action icon="power-outline"></nb-action>
+    </nb-actions>
 </div>

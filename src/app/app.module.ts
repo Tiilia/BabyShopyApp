@@ -1,10 +1,11 @@
+import { AuthGuardService } from './Services/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule } from '@nebular/theme';
+import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule, NbBadgeModule, NbContextMenuModule, NbAlertModule, NbActionsModule, NbInputModule, NbSearchModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -16,6 +17,7 @@ import { SideBarComponent } from './Components/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
+import { BasketComponent } from './Components/basket/basket.component';
 
 
 const formSetting: any = {
@@ -35,7 +37,8 @@ const formSetting: any = {
     ProductsListComponent,
     ProductsDetailsComponent,
     NotFoundComponent,
-    SideBarComponent
+    SideBarComponent,
+    BasketComponent
     
   ],
   imports: [
@@ -53,6 +56,13 @@ const formSetting: any = {
     HttpClientModule,
     NbCardModule,
     NbUserModule,
+    NbBadgeModule,
+    NbContextMenuModule,
+    NbAlertModule,
+    NbActionsModule,
+    NbInputModule,
+    NbSearchModule,
+
 
     NbAuthModule.forRoot({
       strategies:[
@@ -100,7 +110,9 @@ const formSetting: any = {
       },
     }),
   ],
-  providers: [],
+  providers: [
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
