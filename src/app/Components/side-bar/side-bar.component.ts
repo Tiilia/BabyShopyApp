@@ -67,6 +67,11 @@ export class SideBarComponent implements OnInit {
         //   link: this.logout()
         // }
      
+    },
+    {
+      title:'Admin',
+      link: 'admin',
+      hidden:!this.isAuth
     }
 
 

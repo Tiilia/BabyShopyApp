@@ -18,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { BasketComponent } from './Components/basket/basket.component';
+import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
+import { HomeAdminComponent } from './Components/admin/home-admin/home-admin.component';
+
 
 
 const formSetting: any = {
@@ -38,7 +41,9 @@ const formSetting: any = {
     ProductsDetailsComponent,
     NotFoundComponent,
     SideBarComponent,
-    BasketComponent
+    BasketComponent,
+    DashboardComponent,
+    HomeAdminComponent
     
   ],
   imports: [
@@ -62,6 +67,7 @@ const formSetting: any = {
     NbActionsModule,
     NbInputModule,
     NbSearchModule,
+
 
 
     NbAuthModule.forRoot({

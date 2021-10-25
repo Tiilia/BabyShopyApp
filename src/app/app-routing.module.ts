@@ -1,3 +1,6 @@
+import { Role } from './Models/role';
+import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
+import { HomeAdminComponent } from './Components/admin/home-admin/home-admin.component';
 import { BasketComponent } from './Components/basket/basket.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { ProductsListComponent } from './Components/products-list/products-list.component';
@@ -27,6 +30,14 @@ const routes: Routes = [
       { path: 'request-password', component: NbRequestPasswordComponent },
       { path: 'reset-password', component: NbResetPasswordComponent },
     ], 
+  },
+  { 
+    path: 'admin', component: HomeAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {roles: [Role.admin] },
+    children: [
+      {path: 'reports', component: DashboardComponent}    
+    ]
   },
 
   { path: "not-found", component: NotFoundComponent },
