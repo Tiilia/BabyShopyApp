@@ -17,9 +17,9 @@ import { SideBarComponent } from './Components/side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
-import { BasketComponent } from './Components/basket/basket.component';
 import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
 import { HomeAdminComponent } from './Components/admin/home-admin/home-admin.component';
+import { CartComponent } from './Components/cart/cart.component';
 
 
 
@@ -41,9 +41,9 @@ const formSetting: any = {
     ProductsDetailsComponent,
     NotFoundComponent,
     SideBarComponent,
-    BasketComponent,
     DashboardComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    CartComponent
     
   ],
   imports: [

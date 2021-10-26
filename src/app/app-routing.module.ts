@@ -1,7 +1,6 @@
 import { Role } from './Models/role';
 import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
 import { HomeAdminComponent } from './Components/admin/home-admin/home-admin.component';
-import { BasketComponent } from './Components/basket/basket.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { ProductsListComponent } from './Components/products-list/products-list.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
@@ -15,10 +14,9 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "home", redirectTo: "" },
   { path: "shop", component: ProductsListComponent},
-  //{ path: "shop/:category", component: ProductsListComponent},
   { path: "product/:id", component: ProductsDetailsComponent},
 
-  { path: "basket", canActivate: [AuthGuardService], component: BasketComponent},
+  //{ path: "cart", canActivate: [AuthGuardService], component: },
   
   { 
     path: 'auth', component: NbAuthComponent,
