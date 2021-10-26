@@ -1,7 +1,6 @@
+import { ConnectedUserService } from './../../Services/connected-user.service';
 import { User } from './../../Models/user';
 import { ApiService } from './../../Services/api.service';
-import { Category } from './../../Models/category';
-import { Link } from './../../Models/link';
 import { Component, OnInit } from '@angular/core';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
@@ -13,23 +12,21 @@ import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 export class HeaderComponent implements OnInit {
 
   
-  user?: User;
+  public user?: User;
 
-  constructor(private authService: NbAuthService) {
+  constructor(private authService: NbAuthService, private _connectedUser: ConnectedUserService) { }
 
-    this.authService.onTokenChange()
+  ngOnInit(): void {
+  //this.user = this._connectedUser.user
+
+  this.authService.onTokenChange()
       .subscribe((token) => {
 
         if (token.isValid()) {
           this.user = token.getPayload().data; // here we receive a payload from the token and assigns it to our `user` variable 
           console.log(this.user);  
-          
         }
-        
       });
-  }
-
-  ngOnInit(): void {
 
   }
 

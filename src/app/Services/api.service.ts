@@ -1,3 +1,4 @@
+import { CartElement } from '../Models/cart-element';
 import { Product } from './../Models/product';
 import { Category } from './../Models/category';
 import { Injectable } from '@angular/core';
@@ -40,4 +41,9 @@ export class ApiService {
   // public auth(){
   //   return this._http.post<any>(this._url + "/auth/login", {"email": "mail@mail.com", "password":"toto"}).subscribe((data)=> console.log(data));
   // }
+
+  // * get cart
+  public getCartElementsByUserId(id: number): Observable<CartElement[]> {
+    return this._http.get<CartElement[]>(this._url + `/cart/byUserId/${id}`)
+  } 
 }

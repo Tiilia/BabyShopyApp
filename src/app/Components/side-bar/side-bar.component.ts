@@ -54,8 +54,8 @@ export class SideBarComponent implements OnInit {
       ]
     },
     {
-      title: "Card",
-      link: "/basket",
+      title: "Cart",
+      link: "/cart",
       icon: "shopping-cart-outline",
       hidden: !this.isAuth,
       badge: {
@@ -71,7 +71,8 @@ export class SideBarComponent implements OnInit {
     {
       title:'Admin',
       link: 'admin',
-      hidden:!this.isAuth
+      hidden:!this.isAuth,
+      icon: "shield-outline"
     }
 
 
