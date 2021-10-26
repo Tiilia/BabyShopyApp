@@ -22,7 +22,6 @@
     "@nebular/auth": "^8.0.0",
     "@nebular/eva-icons": "8.0.0",
     "@nebular/theme": "^8.0.0",
-    "chart.js": "^3.5.1",
     "eva-icons": "^1.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.1",

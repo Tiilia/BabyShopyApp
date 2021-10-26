@@ -1,6 +1,4 @@
-import { Role } from './Models/role';
-import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
-import { HomeAdminComponent } from './Components/admin/home-admin/home-admin.component';
+import { CartComponent } from './Components/cart/cart.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { ProductsListComponent } from './Components/products-list/products-list.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
@@ -16,7 +14,7 @@ const routes: Routes = [
   { path: "shop", component: ProductsListComponent},
   { path: "product/:id", component: ProductsDetailsComponent},
 
-  //{ path: "cart", canActivate: [AuthGuardService], component: },
+  { path: "cart", canActivate: [AuthGuardService], component: CartComponent},
   
   { 
     path: 'auth', component: NbAuthComponent,
@@ -28,14 +26,6 @@ const routes: Routes = [
       { path: 'request-password', component: NbRequestPasswordComponent },
       { path: 'reset-password', component: NbResetPasswordComponent },
     ], 
-  },
-  { 
-    path: 'admin', component: HomeAdminComponent,
-    canActivate: [AuthGuardService],
-    data: {roles: [Role.admin] },
-    children: [
-      {path: 'reports', component: DashboardComponent}    
-    ]
   },
 
   { path: "not-found", component: NotFoundComponent },
