@@ -5,5 +5,7 @@ export interface User {
     fullName: string
     UserId: number
     registerDate: Date
-    Role: Role
+    Role: string
+    BasketId: number
+
 }

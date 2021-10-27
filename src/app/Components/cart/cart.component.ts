@@ -1,3 +1,4 @@
+import { TotalCart } from './../../Models/total-cart';
 import { CartElement } from './../../Models/cart-element';
 import { ApiService } from './../../Services/api.service';
 import { NbAuthService } from '@nebular/auth';
@@ -13,6 +14,7 @@ export class CartComponent implements OnInit {
 
   public user?: User;
   public cartElementsList?: CartElement[]; 
+  public totalCart?: TotalCart;
 
   
 
@@ -25,9 +27,17 @@ export class CartComponent implements OnInit {
       this.user = token.getPayload().data;  
     
     if (this.user){
-      console.log('ok');
-      
-      this._api.getCartElementsByUserId(this.user.UserId).subscribe( res => this.cartElementsList = res)
+      //console.log('ok');
+
+      // get cart list
+      this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => this.cartElementsList = res)
+
+      //get total cart
+      this._api.getTotalCardbyUserId(this.user.UserId).subscribe( (res) => {
+        this.totalCart = res;
+        console.log(this.totalCart);
+        
+      })
     }}
   });
 
