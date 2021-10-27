@@ -1,15 +1,19 @@
+
+
+<!-- {{ cartElementsList | json}} -->
 <ng-container *ngIf="!cartElementsList">
-    <p>Cart is enpty</p>
+    <p>Cart is enpty :(</p>
 </ng-container>
 <ng-container *ngIf="cartElementsList == undefined">
-    <p>Cart is enpty</p>
+    <p>Cart is enpty!</p>
 </ng-container>
 
 
-<ng-container *ngIf="cartElementsList != undefined">
 
-        <h2>Cart</h2>
-        
+<ng-container *ngFor="let e of cartElementsList">
+    <!-- * if cart is nor empty ------------------------------------------------------------------->
+    <ng-container *ngIf="e.BasketDetailsId">
+    <h2>Cart</h2>
         <nb-card status="success">
             <table>
                 <thead>
@@ -64,7 +68,7 @@
                         </td>
                     </tr>
                 </tbody>
-             
+                
                 <tfoot>
                     <td></td>
                     <td></td>
@@ -78,7 +82,7 @@
         <span class="right">
             <button nbButton
                     status="success"
-            >Order
+            ><a routerLink="/order">Order</a> 
             </button>
             <button nbButton
                     status="danger"
@@ -87,5 +91,17 @@
             >Empty Cart
             </button>
         </span>
+
+    </ng-container>
+
+    <!-- * if cart is empty -->
+    <ng-container *ngIf="!e.BasketDetailsId">
+        <nb-card>
+            <nb-card-body>
+                <h3>Cart is empty!</h3>
+                <button nbButton status="success"><a routerLink="/shop">Go to shop!</a></button>
+            </nb-card-body>
+        </nb-card>
+    </ng-container>
 
 </ng-container>

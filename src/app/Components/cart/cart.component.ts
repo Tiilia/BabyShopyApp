@@ -68,7 +68,7 @@ export class CartComponent implements OnInit {
       })
     }}
   });
-    console.log(`logueur cart list: ${this.cartElementsList}`);
+    //console.log(`cart list: ${this.cartElementsList}`);
     
   }
 

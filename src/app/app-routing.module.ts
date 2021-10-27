@@ -1,3 +1,4 @@
+import { OrderComponent } from './Components/order/order.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { ProductsListComponent } from './Components/products-list/products-list.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "product/:id", component: ProductsDetailsComponent},
 
   { path: "cart", canActivate: [AuthGuardService], component: CartComponent},
+  { path: "order", canActivate: [AuthGuardService], component: OrderComponent},
   
   { 
     path: 'auth', component: NbAuthComponent,
@@ -22,7 +24,7 @@ const routes: Routes = [
       { path: '', component: NbLoginComponent },
       { path: 'login', component: NbLoginComponent },
       { path: 'register', component: NbRegisterComponent },
-      { path: 'logout', component: NbLogoutComponent },
+      //{ path: 'logout', component: NbLogoutComponent },
       { path: 'request-password', component: NbRequestPasswordComponent },
       { path: 'reset-password', component: NbResetPasswordComponent },
     ], 

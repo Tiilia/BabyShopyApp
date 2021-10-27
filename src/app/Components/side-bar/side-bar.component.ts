@@ -97,11 +97,11 @@ export class SideBarComponent implements OnInit {
     }
   }
 
-  public logout(){
-    this._tokenService.clear()
-    window.location.reload()
-    this._router.navigate([''])
-  }
+  // public logout(){
+  //   this._tokenService.clear()
+  //   window.location.reload()
+  //   this._router.navigate([''])
+  // }
   // addMenuCat(){
   //   if (this.categoriesList){
   //     for (let i = 0; i < this.categoriesList.length; i++){
@@ -135,8 +135,18 @@ export class SideBarComponent implements OnInit {
                 this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => {
                   this.cartElementsList = res;
                   console.log(this.cartElementsList);
-                  this.nbCartElements = this.cartElementsList.length
-                  console.log(this.nbCartElements);
+
+                  // get number element in cart
+                  this.cartElementsList.forEach(element => {
+                    if (element.BasketDetailsId){
+                        if (this.cartElementsList){
+                          this.nbCartElements = this.cartElementsList.length
+                          console.log(this.nbCartElements)
+                        }
+                    } else { this.nbCartElements = 0}
+                  });
+                    
+                  
 
                   if (this.user?.Role === 'admin'){
                   console.log('is admin');
@@ -158,6 +168,13 @@ export class SideBarComponent implements OnInit {
           
                   
               }}
+              else { 
+                this._api.getAllCategories().subscribe(res => { this.categoriesList = res;
+                  // if (this.categoriesList) console.log("go");
+                  this.catMenu();
+                  //this.addMenuCat()
+                });
+                this.getMenuNav()}
             });
 
 
