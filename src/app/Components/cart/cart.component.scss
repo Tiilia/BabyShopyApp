@@ -1,0 +1,30 @@
+.padding{
+    padding: 0 20px;
+}
+table{
+    text-align: center;
+    border-collapse: collapse;
+    // padding-bottom: 20px;
+}
+table thead{
+    background-color: #00a481;
+    color: white;
+}
+th, tfoot {
+    height: 50px;
+  }
+.total{
+    font-weight: 700;
+}
+td {
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+  }
+.right{
+    position: absolute;
+    right: 5%;
+}
+a{
+    text-decoration: none;
+    color: #222b45;
+}
