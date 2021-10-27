@@ -1,3 +1,5 @@
+import { DeleteOneProductCart } from './../Models/delete-one-product-cart';
+import { UpdateCartElement } from './../Models/update-cart-element';
 import { AddCartElement } from './../Models/add-cart-element';
 import { TotalCart } from './../Models/total-cart';
 import { CartElement } from '../Models/cart-element';
@@ -6,6 +8,7 @@ import { Category } from './../Models/category';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DeleteAllProductsCart } from '../Models/delete-all-products-cart';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +59,18 @@ export class ApiService {
   // add product to cart
   public addProductToCartByProductId(element: AddCartElement): Observable<string> {
     return this._http.post<string>(this._url + '/cart/add', element)
+  }
+  // update quantity product in cart
+  public updateProductQuantityByBasketDetailsId(element: UpdateCartElement): Observable<string> {
+    return this._http.post<string>(this._url + '/cart/update', element)
+  }
+  // delete one product
+  public deleteOneProductToCartByBasketDetailsId(element: DeleteOneProductCart): Observable<string> {
+    return this._http.post<string>(this._url + '/cart/delete', element)
+  }
+  // delete all product
+  public deleteAllProductsToCartByBasketDetailsId(element: DeleteAllProductsCart): Observable<string> {
+    return this._http.post<string>(this._url + '/cart/deleteAll', element)
   }
 
 

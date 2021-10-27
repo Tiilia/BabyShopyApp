@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { CartComponent } from './Components/cart/cart.component';
+import { OrderComponent } from './Components/order/order.component';
 
 
 const formSetting: any = {
@@ -38,7 +39,8 @@ const formSetting: any = {
     ProductsDetailsComponent,
     NotFoundComponent,
     SideBarComponent,
-    CartComponent
+    CartComponent,
+    OrderComponent
     
   ],
   imports: [
