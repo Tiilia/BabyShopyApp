@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule, NbBadgeModule, NbContextMenuModule, NbAlertModule, NbActionsModule, NbInputModule, NbSearchModule } from '@nebular/theme';
+import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule, NbBadgeModule, NbContextMenuModule, NbAlertModule, NbActionsModule, NbInputModule, NbSearchModule, NbSelectModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -66,6 +66,7 @@ const formSetting: any = {
     NbSearchModule,
     NbInputModule,
     ReactiveFormsModule,
+    NbSelectModule,
 
 
     NbAuthModule.forRoot({

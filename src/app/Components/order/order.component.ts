@@ -1,3 +1,5 @@
+import { ApiService } from './../../Services/api.service';
+import { Country } from './../../Models/country';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -8,7 +10,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class OrderComponent implements OnInit {
 
+  public countriesList: Country[] = []
   public userForm?: FormGroup;
+  public selectedItem: string = "Belgium"
+
 
   public initForm(){
     this.userForm = this._formBuilder.group({
@@ -18,9 +23,12 @@ export class OrderComponent implements OnInit {
     })
   }
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private _api: ApiService) { }
 
   ngOnInit(): void {
+    // get countries list
+    this._api.getAllCountries().subscribe(res => this.countriesList = res)
+
     this.initForm();
   }
 

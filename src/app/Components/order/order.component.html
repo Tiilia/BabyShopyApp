@@ -39,7 +39,11 @@
             <div class="flex">
                 <div class="item">
                     <label class="label" for="">Country</label><br>
-                    <input type="text" nbInput fieldSize="medium" id="country" placeholder="Australia">
+                    <nb-select class="select" placeholder="Select country" [selected]="selectedItem">
+                        <nb-option title="country" *ngFor="let country of countriesList">
+                            <nb-option [value]="country.CountryName">{{ country.CountryName }}</nb-option>
+                        </nb-option>
+                    </nb-select>
                 </div>
             </div>
             

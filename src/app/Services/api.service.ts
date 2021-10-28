@@ -1,3 +1,4 @@
+import { Country } from './../Models/country';
 import { DeleteOneProductCart } from './../Models/delete-one-product-cart';
 import { UpdateCartElement } from './../Models/update-cart-element';
 import { AddCartElement } from './../Models/add-cart-element';
@@ -73,6 +74,10 @@ export class ApiService {
     return this._http.post<string>(this._url + '/cart/deleteAll', element)
   }
 
+  // * get countries list
+  public getAllCountries(): Observable<Country[]> {
+    return this._http.get<Country[]>(this._url + '/countries')
+  }
 
 
 
