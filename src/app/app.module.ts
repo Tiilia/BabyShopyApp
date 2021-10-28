@@ -64,6 +64,8 @@ const formSetting: any = {
     NbActionsModule,
     NbInputModule,
     NbSearchModule,
+    NbInputModule,
+    ReactiveFormsModule,
 
 
     NbAuthModule.forRoot({

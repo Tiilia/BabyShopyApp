@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   public user?: User;
   public cartElementsList?: CartElement[]; 
   public totalCart?: TotalCart;
+  public isCartDetails: boolean = false
 
 
   public addOneOnQuantity(idBasketDetails: number, quantity: number){
@@ -58,7 +59,12 @@ export class CartComponent implements OnInit {
       //console.log('ok');
 
       // get cart list
-      this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => this.cartElementsList = res)
+      this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => {
+        this.cartElementsList = res;
+        this.cartElementsList.forEach(element => {
+          if (element.BasketDetailsId) this.isCartDetails = true
+        });
+      })
 
       //get total cart
       this._api.getTotalCardbyUserId(this.user.UserId).subscribe( (res) => {

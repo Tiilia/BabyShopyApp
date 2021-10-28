@@ -1,1 +1,51 @@
-<p>order works!</p>
+<nb-card accent="success" class="card">
+    <nb-card-header>
+        <h1>Order</h1>
+    </nb-card-header>
+
+    <nb-card-body>
+        <form >
+            
+            <div class="flex">
+                <div class="item">
+                    <label class="label" for="">Firs tName</label><br>
+                    <input type="text" nbInput fieldSize="medium" id="firstName" placeholder="John">
+                </div>
+                <div class="item">
+                    <label class="label" for="">Last Name</label><br>
+                    <input type="text" nbInput fieldSize="medium" id="lastName" placeholder="Doe">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="item">
+                    <label class="label" for="">Address</label><br>
+                    <input type="text" nbInput fieldSize="medium" id="address" placeholder="Milford Street">
+                </div>
+                <div class="item">
+                    <label class="label" for="">Number</label><br>
+                    <input class="tinyInput" type="text" nbInput fieldSize="medium" id="addressNumber" placeholder="145B">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="item">
+                    <label class="label" for="">Postal Code</label><br>
+                    <input class="tinyInput" type="text" nbInput fieldSize="medium" id="postalCode" placeholder="5000">
+                </div>
+                <div class="item">
+                    <label class="label" for="">City</label><br>
+                    <input type="text" nbInput fieldSize="medium" id="city" placeholder="Riverhead">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="item">
+                    <label class="label" for="">Country</label><br>
+                    <input type="text" nbInput fieldSize="medium" id="country" placeholder="Australia">
+                </div>
+            </div>
+            
+            <div>
+                <button nbButton status="success">Valid Command</button>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
