@@ -24,11 +24,17 @@ export class ProductsListComponent implements OnInit {
   public cartElementsList?: CartElement[]; 
 
   public addProductToCart( idProduct: number){
-    if (this.user && idProduct){
-      this._api.addProductToCartByProductId({ BasketId: this.user.BasketId, ProductId: idProduct, Quantity: 1 })
-      .subscribe(data => console.log(data))
-      //window.location.reload()
+    this.cartElementsList?.forEach(element => {
+      if (element.ProductId === idProduct){
+        if (this.user && idProduct){
+          element.Quantity = 1
+          this._api.addProductToCartByProductId(element)
+            .subscribe(data => console.log(data))
+            //window.location.reload()
     }
+      }
+    });
+    
   }
 
   // ! ne s'active pas 

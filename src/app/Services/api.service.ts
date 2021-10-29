@@ -58,19 +58,19 @@ export class ApiService {
     return this._http.get<TotalCart>(this._url + `/cart/priceTotalbyUserId/${id}`)
   }
   // add product to cart
-  public addProductToCartByProductId(element: AddCartElement): Observable<string> {
+  public addProductToCartByProductId(element: CartElement): Observable<string> {
     return this._http.post<string>(this._url + '/cart/add', element)
   }
   // update quantity product in cart
-  public updateProductQuantityByBasketDetailsId(element: UpdateCartElement): Observable<string> {
+  public updateProductQuantityByBasketDetailsId(element: CartElement): Observable<string> {
     return this._http.post<string>(this._url + '/cart/update', element)
   }
   // delete one product
-  public deleteOneProductToCartByBasketDetailsId(element: DeleteOneProductCart): Observable<string> {
+  public deleteOneProductToCartByBasketDetailsId(element: CartElement): Observable<string> {
     return this._http.post<string>(this._url + '/cart/delete', element)
   }
   // delete all product
-  public deleteAllProductsToCartByBasketDetailsId(element: DeleteAllProductsCart): Observable<string> {
+  public deleteAllProductsToCartByBasketDetailsId(element: CartElement): Observable<string> {
     return this._http.post<string>(this._url + '/cart/deleteAll', element)
   }
 

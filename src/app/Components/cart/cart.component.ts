@@ -19,31 +19,55 @@ export class CartComponent implements OnInit {
   public isCartDetails: boolean = false
 
 
-  public addOneOnQuantity(idBasketDetails: number, quantity: number){
-    this._api.updateProductQuantityByBasketDetailsId({ BasketDetailsId: idBasketDetails, Quantity: quantity+=1 })
-      .subscribe(data =>  console.log(data))
+  // product +1
+  public addOneOnQuantity(idBasketDetails: number){
+    console.log(idBasketDetails);
+    
+      this.cartElementsList?.forEach(element => {
+        if ( idBasketDetails === element.BasketDetailsId ) {
+          console.log(element);
+          
+          element.Quantity +=1
+          this._api.updateProductQuantityByBasketDetailsId(element)
+            .subscribe(data =>  console.log(`send: ${data}`))
+        }
+      });
   }
-  public sousOneOnQuantity(idBasketDetails: number, quantity: number){
-    if ((quantity -= 1) > 0){
-      this._api.updateProductQuantityByBasketDetailsId({ BasketDetailsId: idBasketDetails, Quantity: quantity })
-      .subscribe(data =>  console.log(data))
-    } else {
-      this.deleteProduct(idBasketDetails)
-    }
+  // product -1
+  public sousOneOnQuantity(idBasketDetails: number){
+    this.cartElementsList?.forEach(element => {
+      if ( idBasketDetails === element.BasketDetailsId){
+        if ((element.Quantity -= 1) > 0){
+          this._api.updateProductQuantityByBasketDetailsId(element)
+          .subscribe(data =>  console.log(data))
+        } else {
+          this.deleteProduct(idBasketDetails)
+        }
+      }
+    })
   }
 
   // delete one
   public deleteProduct(idBasketDetails: number){
-    this._api.deleteOneProductToCartByBasketDetailsId({ BasketDetailsId: idBasketDetails })
-      .subscribe(data =>  console.log(data))
+    this.cartElementsList?.forEach(element => {
+      if ( idBasketDetails === element.BasketDetailsId){
+        this._api.deleteOneProductToCartByBasketDetailsId(element)
+          .subscribe(data =>  console.log(data))
+      }
+    })
+    
   }
   // delete all
   public deleteAllProducts(){
+    this.cartElementsList?.forEach(element => {
     if (this.user){
-      this._api.deleteAllProductsToCartByBasketDetailsId({ BasketId: this.user.BasketId })
-      .subscribe(data =>  console.log(data))
+      if (this.user.BasketId === element.BasketId){
+        this._api.deleteAllProductsToCartByBasketDetailsId(element)
+          .subscribe(data =>  console.log(data))
+      }
+      
     }
-    
+  })
   }
   
 
