@@ -1,7 +1,7 @@
 import { ApiService } from './../../Services/api.service';
 import { Country } from './../../Models/country';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -11,17 +11,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class OrderComponent implements OnInit {
 
   public countriesList: Country[] = []
-  public userForm?: FormGroup;
+  public userForm!: FormGroup;
   public selectedItem: string = "Belgium"
 
+  public order(){
+    console.log(this.userForm);
+    let infoUser = {
+      FirstName: this.userForm.value["firstNameControl"],
+      LastName: this.userForm.value["lastNameControl"]
+    }
+    console.log(infoUser);
+    
+      
+    
 
-  public initForm(){
-    this.userForm = this._formBuilder.group({
-      firstName: '',
-      lastName: '',
-
-    })
+    
   }
+ 
 
   constructor(private _formBuilder: FormBuilder, private _api: ApiService) { }
 
@@ -29,7 +35,17 @@ export class OrderComponent implements OnInit {
     // get countries list
     this._api.getAllCountries().subscribe(res => this.countriesList = res)
 
-    this.initForm();
+    // form control
+    this.userForm = this._formBuilder.group({
+      firstNameControl: [ null,  // valeur par défaut peut valoir null
+        Validators.compose(
+          [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
+          )],
+      lastNameControl: [ null,
+        Validators.compose(
+          [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
+          )],
+    });
   }
 
 }

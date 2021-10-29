@@ -4,36 +4,36 @@
     </nb-card-header>
 
     <nb-card-body>
-        <form >
+        <form [formGroup]="userForm" (ngSubmit)="order()">
             
             <div class="flex">
                 <div class="item">
-                    <label class="label" for="">Firs tName</label><br>
-                    <input type="text" nbInput fieldSize="medium" id="firstName" placeholder="John">
+                    <label class="label" for="firstName">Firs tName</label><br>
+                    <input type="text" nbInput fieldSize="medium" name="firstName" formControlName="firstNameControl" placeholder="John">
                 </div>
                 <div class="item">
-                    <label class="label" for="">Last Name</label><br>
-                    <input type="text" nbInput fieldSize="medium" id="lastName" placeholder="Doe">
+                    <label class="label" for="lastName">Last Name</label><br>
+                    <input type="text" nbInput fieldSize="medium" name="lastName" formControlName="lastNameControl" placeholder="Doe">
                 </div>
             </div>
             <div class="flex">
                 <div class="item">
                     <label class="label" for="">Address</label><br>
-                    <input type="text" nbInput fieldSize="medium" id="address" placeholder="Milford Street">
+                    <input type="text" nbInput fieldSize="medium" name="address" placeholder="Milford Street">
                 </div>
                 <div class="item">
-                    <label class="label" for="">Number</label><br>
-                    <input class="tinyInput" type="text" nbInput fieldSize="medium" id="addressNumber" placeholder="145B">
+                    <label class="label" for="address">Number</label><br>
+                    <input class="tinyInput" type="text" nbInput fieldSize="medium" name="addressNumber" placeholder="145B">
                 </div>
             </div>
             <div class="flex">
                 <div class="item">
-                    <label class="label" for="">Postal Code</label><br>
-                    <input class="tinyInput" type="text" nbInput fieldSize="medium" id="postalCode" placeholder="5000">
+                    <label class="label" for="postalCode">Postal Code</label><br>
+                    <input class="tinyInput" type="text" nbInput fieldSize="medium" name="postalCode" placeholder="5000">
                 </div>
                 <div class="item">
                     <label class="label" for="">City</label><br>
-                    <input type="text" nbInput fieldSize="medium" id="city" placeholder="Riverhead">
+                    <input type="text" nbInput fieldSize="medium" name="city" placeholder="Riverhead">
                 </div>
             </div>
             <div class="flex">
@@ -46,9 +46,15 @@
                     </nb-select>
                 </div>
             </div>
-            
             <div>
-                <button nbButton status="success">Valid Command</button>
+                <nb-checkbox status="info">Save informations</nb-checkbox>
+            </div>
+            
+            <div class="orderBtn">
+                <button nbButton
+                        status="success"
+                        [disabled]="!userForm.valid"
+                        >Valid Command</button>
             </div>
         </form>
     </nb-card-body>
