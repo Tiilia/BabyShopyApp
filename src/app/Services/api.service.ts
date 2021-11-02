@@ -1,6 +1,5 @@
+import { UserAddress } from './../Models/user-address';
 import { Country } from './../Models/country';
-import { DeleteOneProductCart } from './../Models/delete-one-product-cart';
-import { UpdateCartElement } from './../Models/update-cart-element';
 import { AddCartElement } from './../Models/add-cart-element';
 import { TotalCart } from './../Models/total-cart';
 import { CartElement } from '../Models/cart-element';
@@ -9,7 +8,8 @@ import { Category } from './../Models/category';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DeleteAllProductsCart } from '../Models/delete-all-products-cart';
+import { Order } from '../Models/order';
+
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +58,7 @@ export class ApiService {
     return this._http.get<TotalCart>(this._url + `/cart/priceTotalbyUserId/${id}`)
   }
   // add product to cart
-  public addProductToCartByProductId(element: CartElement): Observable<string> {
+  public addProductToCartByProductId(element: AddCartElement): Observable<string> {
     return this._http.post<string>(this._url + '/cart/add', element)
   }
   // update quantity product in cart
@@ -80,6 +80,13 @@ export class ApiService {
   }
 
 
+  // * get user address informations
+  public getUserAddress(id: number): Observable<UserAddress>{
+    return this._http.get<UserAddress>(this._url + `/usersAddresses/userId/${id}`)
+  }
 
-  
+  // ? post order
+  public postOrderByUserId(order: Order): Observable<string>{
+    return this._http.post<string>(this._url + `/orders/${order.UserId}`, order )
+  }
 }

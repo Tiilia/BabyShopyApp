@@ -120,7 +120,7 @@ export class SideBarComponent implements OnInit {
         
       this._authService.isAuthenticatedOrRefresh().subscribe(auth => {
         this.isAuth = auth;
-        console.log(this.isAuth);
+        // console.log(this.isAuth);
 
 
       // get token
@@ -134,14 +134,14 @@ export class SideBarComponent implements OnInit {
                 // get cart list
                 this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => {
                   this.cartElementsList = res;
-                  console.log(this.cartElementsList);
+                  // console.log(this.cartElementsList);
 
                   // get number element in cart
                   this.cartElementsList.forEach(element => {
                     if (element.BasketDetailsId){
                         if (this.cartElementsList){
                           this.nbCartElements = this.cartElementsList.length
-                          console.log(this.nbCartElements)
+                          // console.log(this.nbCartElements)
                         }
                     } else { this.nbCartElements = 0}
                   });

@@ -24,37 +24,35 @@ export class ProductsListComponent implements OnInit {
   public cartElementsList?: CartElement[]; 
 
   public addProductToCart( idProduct: number){
-    this.cartElementsList?.forEach(element => {
-      if (element.ProductId === idProduct){
-        if (this.user && idProduct){
-          element.Quantity = 1
-          this._api.addProductToCartByProductId(element)
-            .subscribe(data => console.log(data))
-            //window.location.reload()
+    if (this.user && idProduct){
+      this._api.addProductToCartByProductId({ BasketId: this.user.BasketId, ProductId: idProduct, Quantity: 1 })
+      .subscribe(data => console.log(data))
+      //window.location.reload()
     }
-      }
-    });
-    
   }
 
-  // ! ne s'active pas 
+
   // verify if product's not in cart
-  public isProductInCart(idProduct: number){
-    console.log('je verifie');
+  public isProductInCart(product: Product){
+    // console.log('je verifie');
     
-    if (this.cartElementsList){
-      this.cartElementsList.forEach(element => {
-        if ( element.ProductId === idProduct) return true;
-        else return false;
-      });
-    }
+    // if (this.cartElementsList){
+    //   this.cartElementsList.forEach(element => {
+        
+    //     if ( element.ProductId === productId) return true;
+    //     else return false;
+    //   });
+    // }
+    return this.cartElementsList?.map(ce => ce.ProductId).includes(product.ProductId)
   }
-  // ! -----------------------------
+
 
 
   constructor( private _api: ApiService, private _route: ActivatedRoute, private authService: NbAuthService) { }
 
   ngOnInit(): void {
+
+
 
     this._route.queryParamMap.subscribe((params) => {
       this.categoryObj = { ...params};
@@ -78,17 +76,18 @@ export class ProductsListComponent implements OnInit {
         if (token.isValid()) {
           this.user = token.getPayload().data;  
         
-        if (this.user){
-        console.log('ok');
-    
-        // get cart list
-        this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => this.cartElementsList = res)
-        
-
+          if (this.user){
+          console.log('ok');
+      
+            // get cart list
+            this._api.getCartElementsByUserId(this.user.UserId).subscribe( (res) => {
+              this.cartElementsList = res;
+              //this.isProductInCart();
+          
+            })
           }}
         })
       })
     })
-
   }
 }

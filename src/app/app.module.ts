@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
 import { CartComponent } from './Components/cart/cart.component';
 import { OrderComponent } from './Components/order/order.component';
+import { FormAddressUserComponent } from './Components/form-address-user/form-address-user.component';
+import { ReportingComponent } from './Components/admin/reporting/reporting.component';
 
 
 const formSetting: any = {
@@ -40,7 +42,9 @@ const formSetting: any = {
     NotFoundComponent,
     SideBarComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    FormAddressUserComponent,
+    ReportingComponent
     
   ],
   imports: [

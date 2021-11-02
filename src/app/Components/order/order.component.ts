@@ -1,7 +1,10 @@
+import { NbAuthService } from '@nebular/auth';
+import { CartElement } from './../../Models/cart-element';
+import { User } from './../../Models/user';
 import { ApiService } from './../../Services/api.service';
 import { Country } from './../../Models/country';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-order',
@@ -9,42 +12,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-
-  public countriesList: Country[] = []
-  public userForm!: FormGroup;
-  public selectedItem: string = "Belgium"
-
-  public order(){
-    console.log(this.userForm);
-    let infoUser = {
-      FirstName: this.userForm.value["firstNameControl"],
-      LastName: this.userForm.value["lastNameControl"]
-    }
-    console.log(infoUser);
-    
-      
-    
-
-    
-  }
+  
+  public user?: User;
+  public cartList?: CartElement[];   
  
 
-  constructor(private _formBuilder: FormBuilder, private _api: ApiService) { }
+  constructor( private _api: ApiService, private _authService: NbAuthService) { }
 
   ngOnInit(): void {
-    // get countries list
-    this._api.getAllCountries().subscribe(res => this.countriesList = res)
 
-    // form control
-    this.userForm = this._formBuilder.group({
-      firstNameControl: [ null,  // valeur par défaut peut valoir null
-        Validators.compose(
-          [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
-          )],
-      lastNameControl: [ null,
-        Validators.compose(
-          [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
-          )],
+    // get connected user
+    this._authService.onTokenChange().subscribe((token) => {
+      if (token.isValid()) {
+        this.user = token.getPayload().data;
+
+        if (this.user){
+          // get cart details
+          this._api.getCartElementsByUserId(this.user.UserId).subscribe( res => {
+            this.cartList = res;
+          })
+        }
+      }
     });
   }
 

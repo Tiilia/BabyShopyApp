@@ -2,60 +2,36 @@
     <nb-card-header>
         <h1>Order</h1>
     </nb-card-header>
-
     <nb-card-body>
-        <form [formGroup]="userForm" (ngSubmit)="order()">
-            
-            <div class="flex">
-                <div class="item">
-                    <label class="label" for="firstName">Firs tName</label><br>
-                    <input type="text" nbInput fieldSize="medium" name="firstName" formControlName="firstNameControl" placeholder="John">
-                </div>
-                <div class="item">
-                    <label class="label" for="lastName">Last Name</label><br>
-                    <input type="text" nbInput fieldSize="medium" name="lastName" formControlName="lastNameControl" placeholder="Doe">
-                </div>
-            </div>
-            <div class="flex">
-                <div class="item">
-                    <label class="label" for="">Address</label><br>
-                    <input type="text" nbInput fieldSize="medium" name="address" placeholder="Milford Street">
-                </div>
-                <div class="item">
-                    <label class="label" for="address">Number</label><br>
-                    <input class="tinyInput" type="text" nbInput fieldSize="medium" name="addressNumber" placeholder="145B">
-                </div>
-            </div>
-            <div class="flex">
-                <div class="item">
-                    <label class="label" for="postalCode">Postal Code</label><br>
-                    <input class="tinyInput" type="text" nbInput fieldSize="medium" name="postalCode" placeholder="5000">
-                </div>
-                <div class="item">
-                    <label class="label" for="">City</label><br>
-                    <input type="text" nbInput fieldSize="medium" name="city" placeholder="Riverhead">
-                </div>
-            </div>
-            <div class="flex">
-                <div class="item">
-                    <label class="label" for="">Country</label><br>
-                    <nb-select class="select" placeholder="Select country" [selected]="selectedItem">
-                        <nb-option title="country" *ngFor="let country of countriesList">
-                            <nb-option [value]="country.CountryName">{{ country.CountryName }}</nb-option>
-                        </nb-option>
-                    </nb-select>
-                </div>
-            </div>
-            <div>
-                <nb-checkbox status="info">Save informations</nb-checkbox>
-            </div>
-            
-            <div class="orderBtn">
-                <button nbButton
-                        status="success"
-                        [disabled]="!userForm.valid"
-                        >Valid Command</button>
-            </div>
-        </form>
+        <h4>Order Summary</h4>
+        <table >
+            <thead>
+                <th>Products</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </thead>
+            <tbody *ngFor="let item of cartList">
+                <tr>
+                    <td>{{ item.NameProduct }}</td>
+                    <td>{{ item.Quantity }}</td>
+                    <td>
+                        <span [ngStyle]="{'text-decoration':item.Discount ? 'line-through': 'none'}"
+                              class="padding">
+                            {{ item.Price }} € 
+                        </span>
+                        <ng-container *ngIf="item.Discount">
+                            <!-- <span style="color:#009674"> -{{ item.Discount }}€</span>  -->
+                            <span> {{ item.Price - item.Discount}} €</span> 
+                        </ng-container>
+                    </td>
+                    <td>{{ (item.Quantity * (item.Price - item.Discount)).toFixed(2) }} €</td>
+                </tr>
+            </tbody>
+        </table>
+        <button nbButton status="danger"><a routerLink="/cart">Back to Cart</a></button>
+        <h4>Destination</h4>
+        <app-form-address-user></app-form-address-user>
     </nb-card-body>
+    
 </nb-card>

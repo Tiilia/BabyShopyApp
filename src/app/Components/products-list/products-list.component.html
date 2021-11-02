@@ -26,7 +26,7 @@
                 <button nbButton 
                         status="basic" 
                         size="small"
-                        (disabled)="isProductInCart(product.ProductId)"
+                        [disabled]="isProductInCart(product)"
                         (click)="addProductToCart(product.ProductId)"
                             >Add to Cart 
                             <nb-icon icon="plus-outline"></nb-icon>

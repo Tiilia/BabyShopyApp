@@ -4,7 +4,7 @@ BasketId: number
 BasketDetailsId: number
 ProductId: number
 NameProduct: string
-UnitIntStock: number
+UnitIntStock?: number
 Price: number
 Discount: number
 Quantity:number

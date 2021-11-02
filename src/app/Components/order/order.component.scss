@@ -1,21 +1,34 @@
 .card{
-    width: 50%;
+    width: 75%;
     margin: 0 auto;
 }
-.flex{
-    display: flex;
-    //justify-content: center;
+
+
+
+table{
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+    // padding-bottom: 20px;
 }
-.item{
-    margin: 20px;
-    // display: inline-block;
+table thead{
+    background-color: #edf1f7;
+    // color: white;
 }
-// .label{
-//     padding-right: 20px;
-// }
-.tinyInput{
-    width: 40%;
+th, tfoot {
+    height: 50px;
+  }
+.total{
+    font-weight: 700;
 }
-.orderBtn{
+td {
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+  }
+button {
     margin: 50px;
+}
+button a {
+    color: white;
+    text-decoration: none;
 }
