@@ -1,0 +1,26 @@
+
+.card{
+    display: inline-block;
+    text-align: center;
+}
+.bigText{
+    font-weight: 700;
+    color: #2e3a59;
+    font-size: 1.875rem;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+.barchart{
+    display: block;
+    width: 50%;
+}
+.bg{
+    padding: 15px;
+    margin: 10px;
+    border-radius: 3px;
+    border: 2px solid #edf1f7;
+    // background-color: #edf1f7;
+}

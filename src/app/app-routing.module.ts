@@ -1,3 +1,4 @@
+import { ReportingComponent } from './Components/admin/reporting/reporting.component';
 import { OrderComponent } from './Components/order/order.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { AuthGuardService } from './Services/auth-guard.service';
@@ -18,6 +19,10 @@ const routes: Routes = [
   { path: "cart", canActivate: [AuthGuardService], component: CartComponent},
   { path: "order", canActivate: [AuthGuardService], component: OrderComponent},
   
+  {path: 'admin', children: [
+    {path: 'report', component: ReportingComponent}
+  ],
+  },
   { 
     path: 'auth', component: NbAuthComponent,
     children: [

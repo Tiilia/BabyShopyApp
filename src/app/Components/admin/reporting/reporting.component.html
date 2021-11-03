@@ -1,1 +1,23 @@
-<p>reporting works!</p>
+<nb-card [nbSpinner]="spinner" nbSpinnerSize="giant" nbSpinnerStatus="success">
+    <nb-card-header>
+        <h1>Reporting</h1>
+    </nb-card-header>
+    <nb-card-body>
+        <!-- <canvas [id]="orderChart" width="400" height="400"></canvas> -->
+        <!-- {{orderList | json }} -->
+        <div>
+            <div class="card bg">
+                <label>Number of Orders:</label>
+                <p class="bigText">{{ orderNumber }}</p>
+            </div>
+            <div class="barchart bg">
+                <label for="">Best Product per Sales</label>
+                <canvas baseChart
+                        [data]="bestProductCart"
+                        [type]="'bar'"></canvas>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+        

@@ -89,4 +89,8 @@ export class ApiService {
   public postOrderByUserId(order: Order): Observable<string>{
     return this._http.post<string>(this._url + `/orders/${order.UserId}`, order )
   }
+  // get all orders
+  public getAllOrders(): Observable<Order[]>{
+    return this._http.get<Order[]>(this._url + '/orders')
+  }
 }

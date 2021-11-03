@@ -78,7 +78,13 @@ export class SideBarComponent implements OnInit {
       title:'Admin',
       link: 'admin',
       hidden: !this.isAdmin,
-      icon: "shield-outline"
+      icon: "shield-outline",
+      children: [
+        {
+          title: 'Reports',
+          link: '/admin/report'
+        }
+      ]
     }
 
 
