@@ -1,3 +1,5 @@
+import { Order } from 'src/app/Models/order';
+import { ApiService } from './../../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor() { }
+  public orderList? : Order[];
+  public isLoad: boolean = false;
+
+  constructor( private _api: ApiService ) { }
 
   ngOnInit(): void {
+      this._api.getAllOrders().subscribe(res => {
+        this.orderList = res;
+        this.orderList.reverse();
+        this.isLoad = true;
+      })
   }
 
 }

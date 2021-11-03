@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CartElement } from './../../Models/cart-element';
 import { UserAddress } from './../../Models/user-address';
 import { User } from './../../Models/user';
@@ -45,14 +46,21 @@ export class FormAddressUserComponent implements OnInit {
         UserAddress: infoUser,
         CartElements: this.cartList
       }
-      this._api.postOrderByUserId(order).subscribe(data => console.log(data))
+      this._api.postOrderByUserId(order).subscribe(data => {
+        console.log(data);
+        this.cartList.forEach(element => {
+          this._api.deleteAllProductsToCartByBasketDetailsId(element).subscribe()      
+        });
+        this._route.navigate(["order/validate"])
+      })
+      
       //console.log(order);
       
     }
     
   }
 
-  constructor(private _formBuilder: FormBuilder, private _api: ApiService, private _authService: NbAuthService) { }
+  constructor(private _formBuilder: FormBuilder, private _api: ApiService, private _authService: NbAuthService, private _route: Router) { }
 
   ngOnInit(): void {
     // get countries list
@@ -104,7 +112,7 @@ export class FormAddressUserComponent implements OnInit {
                       [Validators.required]
                     )],
                 });
-                this.selectedItem = this.userAdress.CountryName;
+                if (this.userAdress.CountryName) this.selectedItem = this.userAdress.CountryName;
               })
             }
           }

@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule, NbBadgeModule, NbContextMenuModule, NbAlertModule, NbActionsModule, NbInputModule, NbSearchModule, NbSelectModule, NbCheckboxModule, NbSpinnerModule } from '@nebular/theme';
+import { NbThemeModule, NbButtonModule, NbLayoutModule, NbSidebarModule, NbIconModule, NbMenuModule, NbCardModule, NbUserModule, NbBadgeModule, NbContextMenuModule, NbAlertModule, NbActionsModule, NbInputModule, NbSearchModule, NbSelectModule, NbCheckboxModule, NbSpinnerModule, NbAccordionModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -24,6 +24,7 @@ import { ReportingComponent } from './Components/admin/reporting/reporting.compo
 import { NgChartsModule } from 'ng2-charts';
 import { OrdersComponent } from './Components/admin/orders/orders.component';
 import { UserComponent } from './Components/user/user.component';
+import { OrderValidateComponent } from './Components/order-validate/order-validate.component';
 
 
 const formSetting: any = {
@@ -49,7 +50,8 @@ const formSetting: any = {
     FormAddressUserComponent,
     ReportingComponent,
     OrdersComponent,
-    UserComponent
+    UserComponent,
+    OrderValidateComponent
     
   ],
   imports: [
@@ -80,6 +82,7 @@ const formSetting: any = {
     NbCheckboxModule,
     NgChartsModule,
     NbSpinnerModule,
+    NbAccordionModule,
 
 
     NbAuthModule.forRoot({

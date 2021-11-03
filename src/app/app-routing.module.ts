@@ -1,3 +1,4 @@
+import { OrderValidateComponent } from './Components/order-validate/order-validate.component';
 import { UserComponent } from './Components/user/user.component';
 import { OrdersComponent } from './Components/admin/orders/orders.component';
 import { AdminAuthGuardService } from './Services/admin-auth-guard.service';
@@ -21,6 +22,7 @@ const routes: Routes = [
 
   { path: "cart", canActivate: [AuthGuardService], component: CartComponent},
   { path: "order", canActivate: [AuthGuardService], component: OrderComponent},
+  { path: "order/validate", canActivate: [AuthGuardService], component: OrderValidateComponent},
   { path: "user", canActivate: [AuthGuardService], component: UserComponent},
   
   {path: 'admin', 

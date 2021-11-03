@@ -1,1 +1,17 @@
-<p>orders works!</p>
+<nb-card  [nbSpinner]="!isLoad" nbSpinnerSize="giant" nbSpinnerStatus="success">
+    <nb-card-header>
+        <h1>Orders</h1>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-accordion>
+            <nb-accordion-item *ngFor="let order of orderList">
+                <nb-accordion-item-header>
+                    Order: {{ order.OrderId }} - User: {{ order.UserId}} -  Date: {{ order. OrderDate | date }} - Number Products: {{ order.CartElements.length }} - Satatus: {{ order.Status }}
+                </nb-accordion-item-header>
+                <nb-accordion-item-body *ngFor="let element of order.CartElements">
+                   Quantity: {{ element.Quantity }} - {{ element.NameProduct }} - {{ element.Price - element.Discount }}€              
+                </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion> 
+    </nb-card-body>
+</nb-card>

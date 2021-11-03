@@ -36,7 +36,7 @@
     <div class="flex">
         <div class="item">
             <label class="label" for="">Country</label><br>
-            <nb-select class="select" placeholder="Select country" [(selected)]="selectedItem">
+            <nb-select class="select" placeholder="Select country" [selected]="selectedItem">
                 <nb-option title="country" *ngFor="let country of countriesList">
                     <nb-option [value]="country.CountryName">{{ country.CountryName }}</nb-option>
                 </nb-option>
@@ -51,7 +51,7 @@
         <button nbButton
         status="success"
         
-        >Valid Command</button>
+        >Validate Order</button>
     </div>
 </form>
 

@@ -1,13 +1,13 @@
 
 
 <!-- {{ cartElementsList | json}} -->
-<ng-container *ngIf="!cartElementsList">
+<!-- <ng-container *ngIf="!cartElementsList">
     <p>Cart is enpty :(</p>
 </ng-container>
 <ng-container *ngIf="cartElementsList == undefined">
     <p>Cart is enpty!</p>
 </ng-container>
-
+ -->
 
 
 
@@ -15,7 +15,7 @@
 <ng-container *ngIf="isCartDetails">
 
     <h2>Cart</h2>
-    <nb-card status="success">
+    <nb-card status="success"  [nbSpinner]="!isCartDetails" nbSpinnerSize="giant" nbSpinnerStatus="success">
         <table>
             <thead>
                 <th>Quantity</th>
