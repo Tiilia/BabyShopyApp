@@ -83,7 +83,11 @@ export class SideBarComponent implements OnInit {
         {
           title: 'Reports',
           link: '/admin/report'
-        }
+        },
+        {
+          title: 'Orders',
+          link: '/admin/orders'
+        },
       ]
     }
 

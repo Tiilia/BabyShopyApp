@@ -20,9 +20,11 @@
             <nb-search type="column-curtain"></nb-search>
         </nb-action>
         <nb-action>
-            <nb-user [name]="user.fullName"
-                    size="large"
-            ></nb-user>
+            <a routerLink="/user">
+                <nb-user [name]="user.fullName"
+                        size="large"
+                ></nb-user>
+            </a>
         </nb-action>
         <nb-action icon="power-outline"
                     (click)="logout()"></nb-action>
