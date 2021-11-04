@@ -74,7 +74,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><span class="total padding">Total: </span> {{ totalCart?.GrandTotal }} €</td>
+                <td><span class="total padding">Total: </span> {{ totalCart | number: '1.2-2' }} €</td>
             </tfoot>
             
         </table>

@@ -1,1 +1,48 @@
-<p>user works!</p>
+<nb-card accent="success">
+    <nb-card-header>
+        <h4>My account</h4>
+    </nb-card-header>
+    <nb-card-body *ngIf="user">
+        <h6>{{ user.fullName }}</h6>
+        <p>{{ user.email }}</p>
+        <p>Register on {{ user.registerDate | date }}</p>
+
+        <ng-container *ngIf="address && address.Address">
+            <h6>Shipping address</h6>
+            <p>{{ address.FirstName }} {{ address.LastName }}</p>
+            <p>{{ address.Address }}, {{ address.AddressNumber }}</p>
+            <p>{{ address.City }} - {{ address.PostalCode }}</p>
+            <p>{{ address.CountryName }}</p>
+            <button nbButton status="success" class="btn">
+                <a routerLink="/user/formAddress">Edit</a>
+            </button>
+        </ng-container>
+        <ng-container *ngIf="!address || !address.Address">
+            <button nbButton status="success" class="btn">
+                <a routerLink="/user/formAddress">add shipping address</a>
+            </button>
+        </ng-container>
+        
+    </nb-card-body>
+
+</nb-card>
+<nb-card [nbSpinner]="spinner" nbSpinnerSize="giant" nbSpinnerStatus="success"  accent="success">
+    <nb-card-header>
+        <h4>My orders</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-accordion *ngIf="ordersList">
+            <nb-accordion-item *ngFor="let order of ordersList">
+                <nb-accordion-item-header *ngIf="order.OrderId">
+                    {{ order. OrderDate | date }} - Satatus: "{{ order.Status }}" - Total: {{ getTotal(order.OrderId)}}€
+                    <button nbButton size="tiny" status="danger" class="cancelBtn" *ngIf="order.Status=='In preparation'">Cancel</button>
+                    <!-- Order: {{ order.OrderId }} - User: {{ order.UserId}} -   - Number Products: {{ order.CartElements.length }} -->
+                </nb-accordion-item-header>
+                <nb-accordion-item-body *ngFor="let element of order.CartElements">
+                   Quantity: {{ element.Quantity }} - {{ element.NameProduct }} - {{ element.Price - element.Discount }}€              
+                </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion> 
+
+    </nb-card-body>
+</nb-card>

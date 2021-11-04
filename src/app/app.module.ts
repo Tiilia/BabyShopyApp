@@ -25,6 +25,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { OrdersComponent } from './Components/admin/orders/orders.component';
 import { UserComponent } from './Components/user/user.component';
 import { OrderValidateComponent } from './Components/order-validate/order-validate.component';
+import { FormAddAddressComponent } from './Components/user/form-add-address/form-add-address.component';
 
 
 const formSetting: any = {
@@ -51,7 +52,9 @@ const formSetting: any = {
     ReportingComponent,
     OrdersComponent,
     UserComponent,
-    OrderValidateComponent
+    OrderValidateComponent,
+    FormAddAddressComponent,
+
     
   ],
   imports: [

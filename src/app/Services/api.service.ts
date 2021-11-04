@@ -84,7 +84,12 @@ export class ApiService {
   public getUserAddress(id: number): Observable<UserAddress>{
     return this._http.get<UserAddress>(this._url + `/usersAddresses/userId/${id}`)
   }
+  // update adress
+  public updateAddress(address: UserAddress): Observable<string>{
+    return this._http.post<string>(this._url + `/usersAddresses`, address)
+  }
 
+  // * orders ---------------------------------------------------------
   // ? post order
   public postOrderByUserId(order: Order): Observable<string>{
     return this._http.post<string>(this._url + `/orders/${order.UserId}`, order )
@@ -92,5 +97,9 @@ export class ApiService {
   // get all orders
   public getAllOrders(): Observable<Order[]>{
     return this._http.get<Order[]>(this._url + '/orders')
+  }
+  // get orders by user
+  public getOrdersByUserId(id: number): Observable<Order[]>{
+    return this._http.get<Order[]>(this._url + `/orders/userId/${id}`)
   }
 }

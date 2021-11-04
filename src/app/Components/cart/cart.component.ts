@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
 
   public user?: User;
   public cartElementsList?: CartElement[]; 
-  public totalCart?: TotalCart;
+  public totalCart: number = 0;
   public isCartDetails: boolean = false
 
 
@@ -29,7 +29,10 @@ export class CartComponent implements OnInit {
           
           element.Quantity +=1
           this._api.updateProductQuantityByBasketDetailsId(element)
-            .subscribe(data =>  console.log(`send: ${data}`))
+            .subscribe(data =>  {
+              console.log(`send: ${data}`);
+              this.getTotalCart();
+            })
         }
       });
   }
@@ -39,7 +42,11 @@ export class CartComponent implements OnInit {
       if ( idBasketDetails === element.BasketDetailsId){
         if ((element.Quantity -= 1) > 0){
           this._api.updateProductQuantityByBasketDetailsId(element)
-          .subscribe(data =>  console.log(data))
+          .subscribe(data =>  {
+            console.log(data);
+            this.getTotalCart();
+          })
+          
         } else {
           this.deleteProduct(idBasketDetails)
         }
@@ -52,7 +59,10 @@ export class CartComponent implements OnInit {
     this.cartElementsList?.forEach(element => {
       if ( idBasketDetails === element.BasketDetailsId){
         this._api.deleteOneProductToCartByBasketDetailsId(element)
-          .subscribe(data =>  console.log(data))
+          .subscribe(data =>  {
+            console.log(data);
+            location.reload();
+          })
       }
     })
     
@@ -63,13 +73,27 @@ export class CartComponent implements OnInit {
     if (this.user){
       if (this.user.BasketId === element.BasketId){
         this._api.deleteAllProductsToCartByBasketDetailsId(element)
-          .subscribe(data =>  console.log(data))
+          .subscribe(data => {
+            console.log(data);
+            location.reload();
+          })
       }
       
     }
   })
   }
-  
+  public getTotalCart(){
+    this.totalCart = 0;
+    if (this.cartElementsList){
+      for (const element of this.cartElementsList) {
+        if (element.NameProduct){
+          console.log("hop");
+          
+          this.totalCart += (element.Price -element.Discount)*element.Quantity
+        }          
+      }
+    }
+  }
 
   constructor(private authService: NbAuthService, private _api: ApiService) { }
 
@@ -87,15 +111,16 @@ export class CartComponent implements OnInit {
         this.cartElementsList = res;
         this.cartElementsList.forEach(element => {
           if (element.BasketDetailsId) this.isCartDetails = true
+          this.getTotalCart()
         });
       })
 
-      //get total cart
-      this._api.getTotalCardbyUserId(this.user.UserId).subscribe( (res) => {
-        this.totalCart = res;
-        console.log(this.totalCart);
-        
-      })
+      
+      // this._api.getTotalCardbyUserId(this.user.UserId).subscribe( (res) => {
+      //   this.totalCart = res;
+      //   console.log(this.totalCart);  
+      // })
+
     }}
   });
     //console.log(`cart list: ${this.cartElementsList}`);

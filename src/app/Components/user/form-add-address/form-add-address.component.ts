@@ -1,32 +1,28 @@
+import { Country } from './../../../Models/country';
+import { UserAddress } from './../../../Models/user-address';
+import { User } from './../../../Models/user';
 import { Router } from '@angular/router';
-import { CartElement } from './../../Models/cart-element';
-import { UserAddress } from './../../Models/user-address';
-import { User } from './../../Models/user';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { NbAuthService } from '@nebular/auth';
-import { Country } from './../../Models/country';
-import { ApiService } from './../../Services/api.service';
+import { ApiService } from './../../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Order } from 'src/app/Models/order';
 
 @Component({
-  selector: 'app-form-address-user',
-  templateUrl: './form-address-user.component.html',
-  styleUrls: ['./form-address-user.component.scss']
+  selector: 'app-form-add-address',
+  templateUrl: './form-add-address.component.html',
+  styleUrls: ['./form-add-address.component.scss']
 })
-export class FormAddressUserComponent implements OnInit {
+export class FormAddAddressComponent implements OnInit {
+
 
   public user!: User;
-  public userAddress?: UserAddress;
-  public cartList!: CartElement[]; 
+  public userAdress?: UserAddress;
   public countriesList: Country[] = []
   public userForm?: FormGroup;
   public selectedItem: string = ""
-  public saveInfo: boolean = false;
+  public spinner: boolean = true;
 
-
-  public order(){
-    // console.log(this.userForm);
+  public save(){
     if (this.userForm){
       let infoUser: UserAddress = {
         UserId: this.user?.UserId,
@@ -38,28 +34,9 @@ export class FormAddressUserComponent implements OnInit {
         PostalCode: this.userForm.value["postalCodeControl"],
         CountryName: this.selectedItem
       }
-      // console.log(infoUser);
-      // console.log(this.cartList);
-      let order: Order = {
-        UserId: this.user.UserId,
-        OrderDate: new Date(),
-        Status: "In preparation",
-        UserAddress: infoUser,
-        CartElements: this.cartList
-      }
-      this._api.postOrderByUserId(order).subscribe(data => {
-        console.log(data);
-        this.cartList.forEach(element => {
-          this._api.deleteAllProductsToCartByBasketDetailsId(element).subscribe()      
-        });
-        this._route.navigate(["order/validate"])
-      })
-      if (this.saveInfo){
-        this._api.updateAddress(infoUser).subscribe()
-      }
-      
+      this._api.updateAddress(infoUser).subscribe()
     }
-    
+    this._route.navigate(["user"])
   }
 
   constructor(private _formBuilder: FormBuilder, private _api: ApiService, private _authService: NbAuthService, private _route: Router) { }
@@ -75,54 +52,49 @@ export class FormAddressUserComponent implements OnInit {
             
             if (this.user){
 
-              // get cart details
-              this._api.getCartElementsByUserId(this.user.UserId).subscribe( res => {
-                this.cartList = res;
-              })
-
               // get user address informations
               this._api.getUserAddress(this.user.UserId).subscribe(res => {
-                this.userAddress = res;
+                this.userAdress = res;
                 console.log(res);
                 
 
 
                 // form control
                 this.userForm = this._formBuilder.group({
-                  firstNameControl: [ this.userAddress.FirstName ,  // valeur par défaut peut valoir null
+                  firstNameControl: [ this.userAdress.FirstName ,  // valeur par défaut peut valoir null
                     Validators.compose(
                       [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
                       )],
-                  lastNameControl: [ this.userAddress.LastName,
+                  lastNameControl: [ this.userAdress.LastName,
                     Validators.compose(
                       [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
                       )],
-                  addressControl: [ this.userAddress.Address,
+                  addressControl: [ this.userAdress.Address,
                     Validators.compose(
                       [Validators.required, Validators.minLength(2), Validators.minLength(100)]
                     )],
-                  addressNumberControl: [ this.userAddress.AddressNumber,
+                  addressNumberControl: [ this.userAdress.AddressNumber,
                     Validators.compose(
                       [Validators.required, Validators.minLength(1), Validators.minLength(20)]
                     )],
-                  cityControl: [ this.userAddress.City,
+                  cityControl: [ this.userAdress.City,
                     Validators.compose(
                       [Validators.required, Validators.minLength(2), Validators.minLength(50)]
                     )],
-                  postalCodeControl: [ this.userAddress.PostalCode,
+                  postalCodeControl: [ this.userAdress.PostalCode,
                     Validators.compose(
                       [Validators.required]
-                    )]
+                    )],
                 });
-                if (this.userAddress.CountryName) this.selectedItem = this.userAddress.CountryName;
+                if (this.userAdress.CountryName) this.selectedItem = this.userAdress.CountryName;
                 else this.selectedItem = "Belgium"
+                this.spinner = false;
               })
             }
           }
       });
 
 
-    
   }
 
 }
