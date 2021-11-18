@@ -26,7 +26,10 @@ export class ProductsListComponent implements OnInit {
   public addProductToCart( idProduct: number){
     if (this.user && idProduct){
       this._api.addProductToCartByProductId({ BasketId: this.user.BasketId, ProductId: idProduct, Quantity: 1 })
-      .subscribe(data => console.log(data))
+      .subscribe(data => {
+        console.log(data);
+        location.reload();
+      })
       //window.location.reload()
     }
   }
